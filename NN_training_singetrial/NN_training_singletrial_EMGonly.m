@@ -20,7 +20,9 @@ trial_name = 'Bl3d2_r01_1p8_Lev_Cal'; %'Bl3d2_r12_4p5_7cm_Cal';%
 folder_base = 'C:\Users\annek\Documents\MATLAB\MuscleModel\MuscleData\Guinnea Fowls\';
 
 %% Load data
-musvar = getMuscleVariables(folder_base, bird_name, muscle_name);
+bird_data = readmatrix([folder_base 'MuscleMorphologyData']);
+
+musvar = getMuscleVariables(bird_data, bird_name, muscle_name);
 [time, l_ce, v_ce, EMG, Force, h] = loadDataFile(bird_name, muscle_name, trial_name,folder_base); 
 
 %Normalize force to maximum isometric force

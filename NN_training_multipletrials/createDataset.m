@@ -2,6 +2,9 @@ clear all
 close all
 clc
 
+%Note that running this file takes very long. Therefore, it is recommended
+%to do it only once and use the .mat file after.
+
 %% Check path
 addpath(genpath('C:\Users\annek\Documents\MATLAB\MuscleNN\musclenn\PaperCode')) %Change this to the folder where you downloaded this code
 
