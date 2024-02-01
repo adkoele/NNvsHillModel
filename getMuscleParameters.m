@@ -1,4 +1,4 @@
-function musvar = getMuscleVariables(bird_data, bird_name, muscle_name)
+function musvar = getMuscleParameters(bird_data, bird_name, muscle_name)
 
 %% Load parameters from excel
 ind_row = findBird(bird_name);
