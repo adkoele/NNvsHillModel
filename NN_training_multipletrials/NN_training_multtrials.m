@@ -60,7 +60,7 @@ Yval = Forceval_norm;
 
 rng("default") % For reproducibility
 
-for i = 1:10 %Repeat five times
+for i = 1:10 %Repeat ten times
     res(i).Mdl = fitrnet(Xtrain, Ytrain,'OptimizeHyperparameters', 'auto', "HyperparameterOptimizationOptions", struct("MaxObjectiveEvaluations", 60),"ValidationData", {Xval, Yval});
     loss(i) = res(i).Mdl.HyperparameterOptimizationResults.MinObjective;
 end
