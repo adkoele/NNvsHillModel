@@ -9,24 +9,18 @@ Folder Analysis: contains the code that was used to analyse our neural networks 
 - getForce: this function is called by both analysis functions and calculates the muscle force using one of the neural networks or Hill-type muscle models
 - rsquare: this function calculates the coefficient of determination (R^2)
 
-Folder Hill_optimization: contains the code that was used to optimize the Hill-type muscle models, as well as the parameters of the optimized Hill-type muscle models Hill-r01 and Hill-r12.
+Folder Hill_optimization: contains the code that was used to optimize the Hill-type muscle models.
 - guinneaFowls_optHillModel: main function that runs the optimization (note that line 6 and 14 need to be adapted to your own folder structure).
 - cmaes: the function used for the optimization using the CMA-ES algorithms.
 - objective: the objective that was minimized in the optimization (comparison of Hill force to measured force).
-- optresult_150523_r1.mat: parameters of Hill-r01.
-- optresult_150523_r12.mat: parameters of Hill-r12.
 
-Folder NN_training_singletrial: contains the code that was used to train the neural networks that were compared to the Hill-type muscle models, and the resulting networks.
+Folder NN_training_singletrial: contains the code that was used to train the neural networks that were compared to the Hill-type muscle models.
 - NN_training_singletrial: contains the code that was used to train the neural networks.
 - NN_training_singletrial_EMGonly: contains a similar code that was used to a neural network that only used activation as input, and not muscle length and velocity.
-- network_r01.mat: trained network NN-r01.
-- network_r01_emg.mat: trained network with code NN_training_singletrial_EMGonly.
-- network_r12.mat: trained network NN-r12.
 
-Folder NN_training_multipletrials: contains the code that was used to train a neural network on a large dataset of guinea fowl data, and the resulting network.
+Folder NN_training_multipletrials: contains the code that was used to train a neural network on a large dataset of guinea fowl data.
 - NN_training_multtials: main file used for training (note that line 11 and line 18 need to be adapted to your own folder structure).
 - createDataset.m: this function should be run first and creates the dataset that is loaded in line 21 of NN_training_multtrials.
-- network_large_mat: the network that was trained and used in the paper.
 
 Then, the following functions are saved in the main folder, since these are used both for training/optimization and analysis.
 - doDataDenormalization: converts the normalized output of the neural network (mean 0 and standard deviation 1) to a force normalized to isometric force.
