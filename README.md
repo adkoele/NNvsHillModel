@@ -27,4 +27,5 @@ Then, the following functions are saved in the main folder, since these are used
 - doDataNormalization: converts the inputs (activation, length and velocity normalized to optimal fibre length) to normalized inputs (mean 0 and standard deviation 1) as they are used in the neural network.
 - findBird: outputs the correct row in the excel file given the bird name.
 - findMuscleForce: finds the force in the muscle using the Hill-type muscle model.
+- getMuscleParameters: loads the parameters of the current muscle and bird from the (already loaded) MuscleMorphologyData.xlsx file
 - loadDataFile: loads the guinea fowl data and performs the filtering and processing on the shortening velocity and electromyography signal.

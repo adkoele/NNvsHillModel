@@ -1,7 +1,7 @@
 function [Force, Force_iso] = getForce(l_ce, v_ce, EMG, model_name, model_params, muscle_name, bird_name, bird_data)
 
 if nargin > 6
-    musvar = getMuscleVariables(bird_data, bird_name, muscle_name);
+    musvar = getMuscleParameters(bird_data, bird_name, muscle_name);
 else
     musvar.f_max = 1;
     musvar.l_opt = 1;

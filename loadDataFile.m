@@ -1,15 +1,15 @@
 function [time, l_ce, v_ce, EMG_out, Force, h] = loadDataFile(bird_name, muscle_name, trialname, folder_base)
 
 if strcmpi(bird_name,'pu1')
-    folder = [folder_base 'Pu1\'];
+    folder = [folder_base 'Pu1' filesep];
 elseif strcmpi(bird_name,'ye3')
-    folder = [folder_base 'Ye3\'];
+    folder = [folder_base 'Ye3' filesep];
 elseif strcmpi(bird_name,'or3')
-    folder = [folder_base 'Or3\'];
+    folder = [folder_base 'Or3' filesep];
 elseif strcmpi(bird_name,'bl3')
-    folder = [folder_base 'Bl3\'];
+    folder = [folder_base 'Bl3' filesep];
 elseif strcmpi(bird_name,'bl4')
-    folder = [folder_base 'BL4\'];
+    folder = [folder_base 'BL4' filesep];
 end
 
 load([folder trialname]);
