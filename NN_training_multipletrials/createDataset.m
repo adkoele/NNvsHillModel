@@ -15,7 +15,7 @@ trial_names = 'Bl3d2_r01_1p8_Lev_Cal'; %'Bl3d2_r12_4p5_7cm_Cal';%
 
 %Write here the location of the data
 folder_base = 'C:\Users\annek\Documents\MATLAB\MuscleModel\MuscleData\Guinnea Fowls\';
-bird_data = xlsread([folder_base 'MuscleMorphologyData']);
+bird_data = readmatrix([folder_base 'MuscleMorphologyData']);
 
 lcetrain_all = []; vcetrain_all = []; EMGtrain_all = []; Forcetrain_all = [];
 
@@ -40,7 +40,7 @@ for iFolder=1:length(bird_names)
         if strcmpi(muscle_names{iMus}, 'lg')
             PCSA = bird_data(ind_row,8); %converted to m
         elseif strcmpi(muscle_names{iMus}, 'df')
-            PCSA = bird_data(ind_row,17);
+            PCSA = bird_data(ind_row,14);
         else
             error('Incorrect muscle name')
         end
