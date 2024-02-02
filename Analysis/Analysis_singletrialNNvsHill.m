@@ -3,27 +3,31 @@ close all
 clc
 
 %% Add to path
-addpath(genpath('C:\Users\annek\Documents\MATLAB\MuscleNN\musclenn\PaperCode')) %Change this to the folder where you downloaded this code
+%Please make sure that you use the correct \ or / for your operating system
+addpath(genpath('C:\Users\annek\Documents\GitHub\NNvsHillModel\')) %Change this to the folder where you downloaded this code
 
 %% Settings
 
 bird_names = {'Bl3', 'BL4'};
 muscle_names = {'LG', 'DF'};
 
-%Write here the location of the data
-folder_base = 'C:\Users\annek\Documents\MATLAB\MuscleModel\MuscleData\Guinnea Fowls\'; %Change this to the folder where the guinnea fowl data is available
+%Write the location of the data and networks/model parameters here. Please
+%make sure that you use the correct \ or / for your operating system
+folder_data = 'C:\Users\annek\Desktop\GuineaFowlTest\GuineaFowlDataNNModelTraining\Guinnea Fowls Share\'; %Change this to the folder where the guinnea fowl data is available
+folder_networsparams = 'C:\Users\annek\Desktop\GuineaFowlTest\NetworksAndParameterFiles\NetworksAndParameterFiles\'; %Change this to the folder where the networks and model parameter sets are stored
 
-bird_data = xlsread([folder_base 'MuscleMorphologyData']);
+bird_data = readmatrix([folder_data 'MuscleMorphologyData']);
+warning('The columns of the xlsx file are hard coded, please make sure that they match your version of MuscleMorphologyData.xlsx in getMuscleParameters.m')
 
 model_params = {'optresult_150523_r1.mat', 'optresult_150523_r12.mat', 'network_r01' 'network_r12'};
 model_names = {'Hill', 'Hill', 'NN', 'NN'};
 
 for k = 1:length(bird_names)
-    trial_names = dir([folder_base filesep bird_names{k}]);
+    trial_names = dir([folder_data filesep bird_names{k}]);
     % Find some indices for average calculations and plotting
     if strcmpi(bird_names{k}, 'bl3')
         clear trial_name
-        trial_names = dir([folder_base filesep bird_names{k}]); 
+        trial_names = dir([folder_data filesep bird_names{k}]); 
         for iT = 1:length(trial_names)
             trial_name{iT} = trial_names(iT).name;
         end
@@ -32,7 +36,7 @@ for k = 1:length(bird_names)
         r12_ind = find(~contains(trial_name, 'r12') == 0);
     elseif strcmpi(bird_names{k}, 'bl4')
         clear trial_name
-        trial_names = dir([folder_base filesep bird_names{k}]); 
+        trial_names = dir([folder_data filesep bird_names{k}]); 
         for iT = 1:length(trial_names)
             trial_name{iT} = trial_names(iT).name;
         end
@@ -46,9 +50,9 @@ for k = 1:length(bird_names)
             end 
         
             %% Get forces, calculate RMSEs and correlations
-            [time(i,k,l).t, data(i,k,l).l_ce, data(i,k,l).v_ce, data(i,k,l).EMG, force(i,1,k,l).meas] = loadDataFile(bird_names{k}, muscle_names{l}, trial_names(i).name,folder_base); 
+            [time(i,k,l).t, data(i,k,l).l_ce, data(i,k,l).v_ce, data(i,k,l).EMG, force(i,1,k,l).meas] = loadDataFile(bird_names{k}, muscle_names{l}, trial_names(i).name,folder_data); 
             for j = 1:length(model_names)
-                [force(i,j,k,l).est,f_max(i,j,k,l)] = getForce(data(i,k,l).l_ce, data(i,k,l).v_ce, data(i,k,l).EMG, model_names{j}, model_params{j}, muscle_names{l}, bird_names{k}, bird_data);
+                [force(i,j,k,l).est,f_max(i,j,k,l)] = getForce(folder_networsparams, data(i,k,l).l_ce, data(i,k,l).v_ce, data(i,k,l).EMG, model_names{j}, model_params{j}, muscle_names{l}, bird_names{k}, bird_data);
         
                 RMSE(i,j,k,l) = rmse(force(i,j,k,l).est(:), force(i,1,k,l).meas(:)/f_max(i,j,k,l));
                 corrP(i,j,k,l) = corr(force(i,j,k,l).est(:), force(i,1,k,l).meas(:)/f_max(i,j,k,l));

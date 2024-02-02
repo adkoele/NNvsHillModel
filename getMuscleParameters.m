@@ -3,8 +3,6 @@ function musvar = getMuscleParameters(bird_data, bird_name, muscle_name)
 %% Load parameters from excel
 ind_row = findBird(bird_name);
 
-warning('The columns of the xlsx file are hard coded, please make sure that they match your version of MuscleMorphologyData.xlsx')
-
 if strcmpi(muscle_name, 'lg')
 %         musvar.penn_ang = bird_data(ind_row,7);
     musvar.PCSA = bird_data(ind_row,8)/1000/1000; %converted to m

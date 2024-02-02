@@ -1,6 +1,6 @@
-function [Force, Force_iso] = getForce(l_ce, v_ce, EMG, model_name, model_params, muscle_name, bird_name, bird_data)
+function [Force, Force_iso] = getForce(folder_networksparams, l_ce, v_ce, EMG, model_name, model_params, muscle_name, bird_name, bird_data)
 
-if nargin > 6
+if nargin > 7
     musvar = getMuscleParameters(bird_data, bird_name, muscle_name);
 else
     musvar.f_max = 1;
@@ -10,7 +10,7 @@ end
 if strcmpi(model_name, 'hill')
     if strcmpi(model_params(end-3:end), '.mat')
 
-        load(model_params) %Change file name to change model parameters
+        load([folder_networksparams model_params])
         %assign optimized variables
         modelvar.v_max = optvar.Position(1);
         modelvar.Arel = optvar.Position(2);
@@ -39,7 +39,7 @@ if strcmpi(model_name, 'hill')
         Force = findMuscleForce(modelvar, musvar, l_ce, v_ce, EMG);
     end
 elseif strcmpi(model_name, 'nn')
-    load(model_params) %Change file name to change model parameters
+    load([folder_networksparams model_params])
 
     Mdl = NN.Mdl;
     data_mean = NN.data_mean;
@@ -68,7 +68,7 @@ elseif strcmpi(model_name, 'nn')
     Force_norm = predict(Mdl, X);
     Force = doDataDenormalization(Force_norm, data_mean.force, data_std.force);
 elseif strcmpi(model_name, 'nn_emg')
-    load(model_params) %Change file name to change model parameters
+    load([folder_networksparams model_params])
 
     Mdl = NN.Mdl;
     data_mean = NN.data_mean;
