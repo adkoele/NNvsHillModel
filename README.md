@@ -6,9 +6,10 @@ This repository contains four folders and some general files that are contained 
 Folder Analysis: contains the code that was used to analyse our neural networks and Hill-type muscle models. It contains the following functions:
 - Analysis_singletrialNNvsHill: this function was used to compare the "smaller" neural networks agains the Hill-type muscle models that were optimized on the same data
 - Analysis_multtialNN: this function was used to evaluate the neural network that was generated with a large dataset.
-- getForce: this function is called by both analysis functions and calculates the muscle force using one of the neural networks or Hill-type muscle models
-- rsquare: this function calculates the coefficient of determination (R^2)
-  **IMPORTANT**: please adjust the path in lines 7, 16, and 17 in both Analysis_singletrialNNvsHill and Analysis_multtialNN to reflect your system's path.
+- getForce: this function is called by both analysis functions and calculates the muscle force using one of the neural networks or Hill-type muscle models.
+- rsquare: this function calculates the coefficient of determination (R^2).
+  
+**IMPORTANT**: please adjust the path in lines 7, 16, and 17 in both Analysis_singletrialNNvsHill and Analysis_multtialNN to reflect your system's path.
 
 Folder Hill_optimization: contains the code that was used to optimize the Hill-type muscle models.
 - guinneaFowls_optHillModel: main function that runs the optimization (note that line 6 and 14 need to be adapted to your own folder structure).
