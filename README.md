@@ -12,13 +12,13 @@ Folder Analysis: contains the code that was used to analyse our neural networks 
 **IMPORTANT**: please adjust the path in lines 7, 16, and 17 in both Analysis_singletrialNNvsHill and Analysis_multtialNN to reflect your system's path.
 
 Folder Hill_optimization: contains the code that was used to optimize the Hill-type muscle models.
-- guinneaFowls_optHillModel: main function that runs the optimization (note that line 6 and 14 need to be adapted to your own folder structure).
+- guinneaFowls_optHillModel: main function that runs the optimization (note that line 7 and 16 need to be adapted to your own folder structure).
 - cmaes: the function used for the optimization using the CMA-ES algorithms.
 - objective: the objective that was minimized in the optimization (comparison of Hill force to measured force).
 
 Folder NN_training_singletrial: contains the code that was used to train the neural networks that were compared to the Hill-type muscle models.
-- NN_training_singletrial: contains the code that was used to train the neural networks.
-- NN_training_singletrial_EMGonly: contains a similar code that was used to a neural network that only used activation as input, and not muscle length and velocity.
+- NN_training_singletrial: contains the code that was used to train the neural networks (note that line 12 and 20 need to be adapted to your own folder structure).
+- NN_training_singletrial_EMGonly: contains a similar code that was used to a neural network that only used activation as input, and not muscle length and velocity (note that line 12 and 20 need to be adapted to your own folder structure)..
 
 Folder NN_training_multipletrials: contains the code that was used to train a neural network on a large dataset of guinea fowl data.
 - NN_training_multtials: main file used for training (note that line 11 and line 18 need to be adapted to your own folder structure).
