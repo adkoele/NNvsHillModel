@@ -52,15 +52,15 @@ Xtrain = [lcetrain_norm vcetrain_norm EMGtrain_norm];
 Ytrain = Forcetrain_norm;
 
 %Inputs
-Xval = [lceval_norm vceval_norm EMGval_norm Forceval_norm];
+Xval = [lceval_norm vceval_norm EMGval_norm];
 %Outputs
 Yval = Forceval_norm;
 
 %% Training with hyperparameter optimization
 
-rng("default") % For reproducibility
+% rng("default") % For reproducibility
 
-for i = 1:10 %Repeat ten times
+for i = 1:5 %Repeat five times
     res(i).Mdl = fitrnet(Xtrain, Ytrain,'OptimizeHyperparameters', 'auto', "HyperparameterOptimizationOptions", struct("MaxObjectiveEvaluations", 60),"ValidationData", {Xval, Yval});
     loss(i) = res(i).Mdl.HyperparameterOptimizationResults.MinObjective;
 end
