@@ -2,20 +2,25 @@ clear all
 close all
 clc
 
-%% Check path
-addpath(genpath('C:\Users\annek\Documents\MATLAB\MuscleNN\musclenn\PaperCode')) %Change this to the folder where you downloaded this code
+%% Add to path
+%Please make sure that you use the correct \ or / for your operating system
+addpath(genpath('C:\Users\annek\Documents\GitHub\NNvsHillModel\')) %Change this to the folder where you downloaded this code
 
 %% Settings
 bird_name = 'Bl3'; %
 muscle_name = 'LG'; %'DF'; %
 trial_name = 'Bl3d2_r01_1p8_Lev_Cal';% 'Bl3d2_r12_4p5_7cm_Cal';
 
-%Write here the location of the data
-folder_base = 'C:\Users\annek\Documents\MATLAB\MuscleModel\MuscleData\Guinnea Fowls\'; %Change this folder to where the data is located
+%Write the location of the data and networks/model parameters here. Please
+%make sure that you use the correct \ or / for your operating system
+folder_data = 'C:\Users\annek\Desktop\GuineaFowlTest\GuineaFowlDataNNModelTraining\Guinnea Fowls Share\'; %Change this to the folder where the guinnea fowl data is available
+
+bird_data = readmatrix([folder_data 'MuscleMorphologyData']);
+warning('The columns of the xlsx file are hard coded, please make sure that they match your version of MuscleMorphologyData.xlsx in getMuscleParameters.m')
 
 %% Load data
-musvar = getMuscleVariables(folder_base, bird_name, muscle_name);
-[time, l_ce, v_ce, EMG, Force, h] = loadDataFile(bird_name, muscle_name, trial_name, folder_base); 
+musvar = getMuscleParameters(bird_data, bird_name, muscle_name);
+[time, l_ce, v_ce, EMG, Force, h] = loadDataFile(bird_name, muscle_name, trial_name, folder_data); 
 
 %% Generate standard muscle model (parameters to be optimized later)
 modelvar.v_max = 10;
