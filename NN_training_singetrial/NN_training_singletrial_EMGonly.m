@@ -9,7 +9,7 @@ close all
 clc
 
 %% Check path
-addpath(genpath('C:\Users\annek\Documents\MATLAB\MuscleNN\musclenn\PaperCode')) %Change this to the folder where you downloaded this code
+addpath(genpath('')) %Change this to the folder where you downloaded this code
 
 %% Settings
 bird_name = 'Bl3'; 
@@ -17,7 +17,7 @@ muscle_name = 'LG'; %
 trial_name = 'Bl3d2_r01_1p8_Lev_Cal'; %'Bl3d2_r12_4p5_7cm_Cal';%
 
 %Write here the location of the data
-folder_base = 'C:\Users\annek\Documents\MATLAB\MuscleModel\MuscleData\Guinnea Fowls\';
+folder_base = '';
 
 %% Load data
 bird_data = readmatrix([folder_base 'MuscleMorphologyData']);

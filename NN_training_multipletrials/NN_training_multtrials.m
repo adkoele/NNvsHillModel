@@ -1,21 +1,21 @@
 %The following code is used to train a NN model on the LG data of three birds
 % (Bl3, BL4, Or3). All trials were used for training. The training was
-%repeated 10 times to get the best NN model with the lowest error, out of these
-%10 iterations.  
+%repeated 5 times to get the best NN model with the lowest error, out of these
+%5 iterations.  
 
 clear all
 close all
 clc
 
 %% Check path
-addpath(genpath('C:\Users\annek\Documents\MATLAB\MuscleNN\musclenn\PaperCode')) %Change this to the folder where you downloaded this code
+addpath(genpath('')) %Change this to the folder where you downloaded this code
 
 %% Settings
 bird_names = {'Bl3', 'BL4', 'Or3'}; 
 muscle_name = 'LG'; %
 
 %Write here the location of the data
-folder_base = 'C:\Users\annek\Documents\MATLAB\MuscleModel\MuscleData\Guinnea Fowls\';
+folder_base = '';
 
 %% Load data
 load('data_train_validation.mat'); %If this file does not yet exist, please run createDataset.m once first
