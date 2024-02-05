@@ -1,7 +1,7 @@
 # NNvsHillModel
 Code used for: Neural Networks Estimate Muscle Force in Dynamic Conditions Better than Hill-type Muscle Models
 
-This repository contains four folders and some general files that are contained in the main folder. Note that the function RMSE is available in MATLAB from version R2022b onwards. You can download a similar function here: https://de.mathworks.com/matlabcentral/fileexchange/21383-rmse
+This repository contains four folders and some general files that are contained in the main folder. Note that the function RMSE is available in MATLAB from version R2022b onwards. You can download a similar function here: https://de.mathworks.com/matlabcentral/fileexchange/21383-rmse.
 
 Folder Analysis: contains the code that was used to analyse our neural networks and Hill-type muscle models. It contains the following functions:
 - Analysis_singletrialNNvsHill: this function was used to compare the "smaller" neural networks agains the Hill-type muscle models that were optimized on the same data
