@@ -8,6 +8,7 @@ addpath(genpath('C:\Users\annek\Documents\GitHub\NNvsHillModel\')) %Change this 
 
 %% Settings
 
+
 bird_names = {'Bl3', 'BL4', 'Or3', 'Ye3', 'Pu1'}; %Birds in order of 1 to 5
 muscle_names = {'LG', 'DF'};
 
