@@ -58,7 +58,7 @@ if ~all(size(y)==size(f)); error 'Y and F must be the same size'; end
 tmp = ~or(isnan(y),isnan(f));
 y = y(tmp);
 f = f(tmp);
-if c; r2 = max(0,1 - sum((y(:)-f(:)).^2)/sum((y(:)-mean(y(:))).^2));
+if c; r2 = 1 - sum((y(:)-f(:)).^2)/sum((y(:)-mean(y(:))).^2); %max(0,1 - sum((y(:)-f(:)).^2)/sum((y(:)-mean(y(:))).^2));
 else r2 = 1 - sum((y(:)-f(:)).^2)/sum((y(:)).^2);
     if r2<0
     % http://web.maths.unsw.edu.au/~adelle/Garvan/Assays/GoodnessOfFit.html
