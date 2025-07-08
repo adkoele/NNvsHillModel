@@ -35,32 +35,54 @@ Force = data.tendonForceN(:,ind_mus);
 % A high-pass Butterworth filter (30 Hz) was applied to remove low frequency noise, the signal was
 % rectified, and a low-pass Butterworth filter (6 Hz) was applied to generate a smoothed EMG signal
 % using a moving average zero-phase digital filter with a window of 120 ms.
-EMG2 = data.mV_EMG(:,ind_mus);
-[B,A] = butter(3,30/(freq/2),'high');
-EMG3 = filtfilt(B,A,EMG2); %high-pass filter
-EMG4 = abs(EMG3); %rectification
-[B,A] = butter(3,6/(freq/2),'low');
-EMG = max(filtfilt(B,A,EMG4),0); %low-pass filter
+EMG = filtEMG(data, ind_mus, freq);
 
-% Load all files to find max recorded value:
-list_files = dir(folder);
-EMG_all = [];
-for i = 3:length(list_files)
-    if strcmp(list_files(i).name(end-2:end), 'mat')
-        load([folder list_files(i).name]);
-    else
-        continue
-    end
-    EMG2 = data.mV_EMG(:,ind_mus);
-    [B,A] = butter(3,30/(freq/2),'high');
-    EMG3 = filtfilt(B,A,EMG2); %high-pass filter
-    EMG4 = abs(EMG3); %rectification
-    [B,A] = butter(3,6/(freq/2),'low');
-    EMG_temp = max(filtfilt(B,A,EMG4),0);%filtfilt(B,A,EMG4); %low-pass filter
-    EMG_all = [EMG_all;EMG_temp];
+% Check if average maximum Activation file already exists, if not generate
+% it
+filePath = fileparts(mfilename('fullpath'));
+avgMaxActFilePath=[filePath filesep 'avgMaxActivation.mat'];
+
+if exist(avgMaxActFilePath, 'file')==2
+    disp('File with average maximum activation, from max speed trials, for each bird and muscle exists');  
+else
+    disp('File with average maximum activation, from max speed trials, for each bird and muscle does not exist. It will be generated.');
+    generateAvgMaxEMGForEachBird();   
 end
-EMG_max = max(EMG_all);
-EMG1 = EMG/EMG_max;
+
+% Load file with average max activation and choose correct value based on
+% bird and muscle names
+avgMaxActFile=load([filePath filesep 'avgMaxActivation.mat']);
+
+if strcmpi(bird_name, 'Bl3') && ind_mus==1
+    avgMaxActIndx=1;
+elseif strcmpi(bird_name, 'Bl3') && ind_mus==2
+    avgMaxActIndx=5;
+elseif strcmpi(bird_name, 'BL4') && ind_mus==1
+    avgMaxActIndx=2;
+elseif strcmpi(bird_name, 'BL4') && ind_mus==2
+    avgMaxActIndx=6;
+elseif strcmpi(bird_name, 'Or3') && ind_mus==1
+    avgMaxActIndx=3;
+elseif strcmpi(bird_name, 'Or3') && ind_mus==2
+    avgMaxActIndx=7;
+elseif strcmpi(bird_name, 'Ye3') && ind_mus==2
+    avgMaxActIndx=8;
+elseif strcmpi(bird_name, 'Pu1') && ind_mus==1
+    avgMaxActIndx=4;
+end
+
+avgMaxEMG=avgMaxActFile.avgMaxActPerBirdArray{avgMaxActIndx,3};
+
+
+
+%=============================================================
+% Average max normalization, that uses the average of all the max
+% EMG values across highest-speed trials of
+% that bird's muscle
+%=============================================================
+EMG1 = (EMG/avgMaxEMG); 
+%=============================================================
+
 
 %include time delay in EMG
 td = 23.6/1000;

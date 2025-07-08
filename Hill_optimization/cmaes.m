@@ -20,8 +20,7 @@ nVar= 6;                % Number of Unknown (Decision) Variables; V_ce!
 
 VarSize=[1 nVar];       % Decision Variables Matrix Size
 
-%VarMin = 3;
-%VarMax = 20;
+
 % v_max Arel gmax W kPEE PEEslack
 VarMin=[3, 0.1, 1.1, 0.1, 0.1, 0.8];              % Lower Bound of Decision Variables
 VarMax=[20, 0.6, 2.0, 0.8, 3.0, 1.5];             % Upper Bound of Decision Variables
@@ -74,13 +73,16 @@ empty_individual.Step=[];
 empty_individual.Cost=[];
 
 M=repmat(empty_individual,MaxIt,1);
-M(1).Position=unifrnd(VarMin,VarMax,VarSize); %[-878.25 1.253 2200.4 1.254 1192 186.24 -1.3 3.8 1.253 10 0.2350 -7.56 6.37/1000 0.59 38.05/1000 0.76 15.89/1000 0.71 2/1000];%
+M(1).Position=unifrnd(VarMin,VarMax,VarSize); 
 M(1).Step=zeros(VarSize);
 M(1).Cost= CostFunction(M(1).Position); 
 
 BestSol=M(1);
 
 BestCost=zeros(MaxIt,1);
+
+timeAtOptStart = datetime('now');
+disp(['optimization start: ', char(timeAtOptStart)]);
 
 %% CMA-ES Main Loop
 
@@ -153,6 +155,8 @@ for g=1:MaxIt
         C{g+1}=V*E/V;
     end
 end
+timeAtOptEnd = datetime('now');
+disp(['optimization end: ', char(timeAtOptEnd)]);
 
 %% Display Results
 
